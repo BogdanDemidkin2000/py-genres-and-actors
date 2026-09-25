@@ -4,7 +4,7 @@ from django.db.models import QuerySet
 from db.models import Genre, Actor
 
 def main() -> QuerySet:
-    list_genres = ["Western", "Action", "Dramma"]
+    list_genres = [("Western",), ("Action",), ("Dramma",)]
     list_actors = [
         ("George", "Klooney"),
         ("Kianu", "Reaves"),
@@ -30,10 +30,12 @@ def main() -> QuerySet:
     ).update(name="Drama")
 
     update_actor = Actor.objects.filter(
+        first_name="George",
         last_name="Klooney"
     ).update(last_name="Clooney")
 
     update_actor = Actor.objects.filter(
+        first_name="Kianu",
         last_name="Reaves"
     ).update(first_name="Keanu", last_name="Reeves")
 
