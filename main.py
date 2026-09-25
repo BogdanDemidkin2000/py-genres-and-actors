@@ -3,6 +3,7 @@ import init_django_orm  # noqa: F401
 from django.db.models import QuerySet
 from db.models import Genre, Actor
 
+
 def main() -> QuerySet:
     list_genres = [("Western",), ("Action",), ("Dramma",)]
     list_actors = [
@@ -15,38 +16,38 @@ def main() -> QuerySet:
     ]
 
     for genre in list_genres:
-        new_genre = Genre.objects.create(
+        Genre.objects.create(
             name=genre
-    )
+        )
 
     for first_name, last_name in list_actors:
-        new_actor= Actor.objects.create(
+        Actor.objects.create(
             first_name=first_name,
             last_name=last_name
-    )
+        )
 
-    update_genre = Genre.objects.filter(
+    Genre.objects.filter(
         name="Dramma"
     ).update(name="Drama")
 
-    update_actor = Actor.objects.filter(
+    Actor.objects.filter(
         first_name="George",
         last_name="Klooney"
     ).update(last_name="Clooney")
 
-    update_actor = Actor.objects.filter(
+    Actor.objects.filter(
         first_name="Kianu",
         last_name="Reaves"
     ).update(first_name="Keanu", last_name="Reeves")
 
-    delete_genre = Genre.objects.filter(
+    Genre.objects.filter(
         name="Action"
     ).delete()
 
-    delete_actor = Actor.objects.filter(
+    Actor.objects.filter(
         first_name="Scarlett"
     ).delete()
 
-    return  Actor.objects.filter(
+    return Actor.objects.filter(
         last_name="Smith"
     ).order_by("first_name")
